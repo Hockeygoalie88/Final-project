@@ -15,16 +15,6 @@ Windows.Engine:AssetRegistry:bFilterAssetDataWithNoTags:0=false
 Windows.Engine:AssetRegistry:bFilterDependenciesWithNoTags:0=false
 Windows.Engine:AssetRegistry:bFilterSearchableNames:0=true
 Windows.Engine:SystemSettings:fx.NiagaraAllowRuntimeScalabilityChanges:0=1
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:bUseAudioStreamCaching:0=False
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:bResampleForDevice:0=False
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:MaxSampleRate:0=0.000000
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:HighSampleRate:0=0.000000
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:MedSampleRate:0=0.000000
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:LowSampleRate:0=0.000000
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:MinSampleRate:0=0.000000
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:CompressionQualityModifier:0=0.000000
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:AutoStreamingThreshold:0=0.000000
-Windows.Engine:/Script/WindowsTargetPlatform.WindowsTargetSettings:SoundCueCookQualityIndex:0=-1
 Windows.Engine:/Script/Engine.RendererSettings:r.MobileHDR:0=False
 Windows.Scalability:EffectsQuality@0:fx.Niagara.QualityLevel:0=0
 Windows.Scalability:EffectsQuality@1:fx.Niagara.QualityLevel:0=1
@@ -35,6 +25,8 @@ Engine:Core.System:CanStripEditorOnlyExportsAndImports:0=True
 Engine:Core.System:DetailedCallstacksInNonMonolithicBuilds:0=True
 Engine:Core.System:UseSeperateBulkDataFiles:0=False
 Engine:Core.System:HangDuration:0=0.0
+Engine:Core.System:AssetLogShowsDiskPath:0=True
+Engine:Core.System:AssetLogShowsAbsolutePath:0=True
 Engine:/Script/AndroidPlatformEditor.AndroidSDKSettings:SDKPath:0=(Path="")
 Engine:/Script/AndroidPlatformEditor.AndroidSDKSettings:NDKPath:0=(Path="")
 Engine:/Script/AndroidPlatformEditor.AndroidSDKSettings:JavaPath:0=(Path="")
@@ -92,6 +84,7 @@ Engine:WebSockets.LibWebSockets:ThreadStackSize:0=131072
 Engine:WebSockets.LibWebSockets:ThreadTargetFrameTimeInSeconds:0=0.0333
 Engine:WebSockets.LibWebSockets:ThreadMinimumSleepTimeInSeconds:0=0.0
 Engine:WebSockets.LibWebSockets:MaxHttpHeaderData:0=32768
+Engine:Voice:bEnabled:0=false
 Engine:SlateStyle:DefaultFontName:0=/Engine/EngineFonts/Roboto
 Engine:PlatformMemoryBuckets:LargestMemoryBucket_MinGB:0=32
 Engine:PlatformMemoryBuckets:LargerMemoryBucket_MinGB:0=12
@@ -415,7 +408,10 @@ Engine:LogFiles:PurgeLogsDays:0=5
 Engine:LogFiles:MaxLogFilesOnDisk:0=10
 Engine:LogFiles:LogTimes:0=True
 Engine:Kismet:AllowDerivedBlueprints:0=true
+Engine:Kismet:CompileDisplaysTextBackend:0=false
+Engine:Kismet:CompileDisplaysBinaryBackend:0=false
 Engine:Kismet:bTurnOffEditorConstructionScript:0=false
+Engine:Kismet:bLogPrintStringSource:0=true
 Engine:Kismet:bUseLocalGraphVariables:0=false
 Engine:Kismet:bPersistentUberGraphFrame:0=true
 Engine:Kismet:bChangeDefaultValueWithoutReinstancing:0=true
@@ -441,6 +437,10 @@ Engine:SystemSettings:framepro.ScopeMinTimeMicroseconds:0=10
 Engine:SystemSettings:fx.NiagaraAllowRuntimeScalabilityChanges:0=1
 Engine:SystemSettingsEditor:r.VSync:0=0
 Engine:SystemSettingsEditor:r.RHICmdBypass:0=0
+Engine:OnlineSubsystem:bHasVoiceEnabled:0=true
+Engine:OnlineSubsystem:VoiceNotificationDelta:0=0.33
+Engine:OnlineSubsystem:MaxLocalTalkers:0=1
+Engine:OnlineSubsystem:MaxRemoteTalkers:0=16
 Engine:OnlineSubsystem:PollingIntervalInMs:0=50
 Engine:OnlineSubsystem:AdditionalModulesToLoad:0=HTTP
 Engine:OnlineSubsystem:AdditionalModulesToLoad:1=XMPP
@@ -981,6 +981,7 @@ Editor:/Script/UnrealEd.ActorFactoryPointLight:MenuPriority:0=19
 Editor:/Script/UnrealEd.ActorFactorySpotLight:MenuPriority:0=19
 Editor:/Script/UnrealEd.ActorFactorySkeletalMesh:MenuPriority:0=13
 Editor:/Script/UnrealEd.ActorFactoryAmbientSound:MenuPriority:0=11
+Editor:BlueprintEditor.Palette:bUseLegacyLayout:0=false
 Editor:BlueprintEditor.Favorites:DefaultProfile:0=StarterProfile
 Editor:BlueprintEditor.Favorites:StarterProfile:0=(NodeName="/Script/BlueprintGraph.K2Node_Event", FieldName="/Script/Engine.ActorReceiveBeginPlay")
 Editor:BlueprintEditor.Favorites:StarterProfile:1=(NodeName="/Script/BlueprintGraph.K2Node_Event", FieldName="/Script/Engine.ActorReceiveTick")
@@ -990,6 +991,11 @@ Editor:BlueprintEditor.Favorites:StarterProfile:4=(NodeName="/Script/BlueprintGr
 Editor:BlueprintEditor.Favorites:StarterProfile:5=(NodeName="/Script/BlueprintGraph.K2Node_CallFunction", FieldName="/Script/Engine.ActorK2_DestroyActor")
 Editor:BlueprintEditor.Favorites:StarterProfile:6=(NodeName="/Script/BlueprintGraph.K2Node_CallFunction", FieldName="/Script/Engine.GameplayStaticsGetAllActorsOfClass")
 Editor:BlueprintEditor.Favorites:StarterProfile:7=(NodeName="/Script/BlueprintGraph.K2Node_SpawnActorFromClass")
+Editor:BlueprintEditor.Menu:BlueprintHiddenFields:0=/Script/Engine.ActorK2_AttachRootComponentTo
+Editor:BlueprintEditor.Menu:BlueprintHiddenFields:1=/Script/Engine.ActorK2_AttachRootComponentToActor
+Editor:BlueprintEditor.Menu:BlueprintHiddenFields:2=/Script/Engine.ActorDetachRootComponentFromParent
+Editor:BlueprintEditor.Menu:BlueprintHiddenFields:3=/Script/Engine.SceneComponentK2_AttachTo
+Editor:BlueprintEditor.Menu:BlueprintHiddenFields:4=/Script/Engine.SceneComponentDetachFromParent
 Editor:UnrealEd.HitProxy:HitProxySize:0=5
 Editor:UserDefinedStructure:bUseUserDefinedStructure:0=true
 Editor:CustomBlueprintFunctionLibrary:bCanCreateNew:0=true
